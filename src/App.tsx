@@ -692,7 +692,8 @@ function App() {
             className="car-video"
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster={`${import.meta.env.BASE_URL}videos/session-poster.png`}
             onLoadedData={() => {
               const video =
                 videoRef.current;
@@ -701,6 +702,7 @@ function App() {
               if (
                 modeRef.current ===
                 "idle"
+            
               ) {
                 video.pause();
 
