@@ -736,7 +736,7 @@ function App() {
             }}
           >
             <source
-              src={`${import.meta.env.BASE_URL}videos/2session-mobile.mp4`}
+              src={`${import.meta.env.BASE_URL}videos/session.mp4`}
               type="video/mp4"
             />
           </video>
