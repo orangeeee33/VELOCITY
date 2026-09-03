@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.BASE_URL;
 import {
   useEffect,
   useState,
@@ -30,10 +31,10 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "GRAPHITE GREY",
     images: [
-      "/cars/BMW-M5/front.png",
-      "/cars/BMW-M5/side.png",
-      "/cars/BMW-M5/rear.png",
-      "/cars/BMW-M5/interior.png",
+      "`${BASE_URL}cars/BMW-M5/front.png`",
+      "`${BASE_URL}cars/BMW-M5/side.png`",
+      "`${BASE_URL}cars/BMW-M5/rear.png`",
+      "`${BASE_URL}cars/BMW-M5/interior.png`",
     ],
   },
   {
@@ -47,10 +48,10 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "OBSIDIAN GREY",
     images: [
-      "/cars/Mercedes-CLS63/front.png",
-      "/cars/Mercedes-CLS63/side.png",
-      "/cars/Mercedes-CLS63/rear.png",
-      "/cars/Mercedes-CLS63/interior.png",
+      "`${BASE_URL}cars/Mercedes-CLS63/front.png`",
+      "`${BASE_URL}cars/Mercedes-CLS63/side.png`",
+      "`${BASE_URL}cars/Mercedes-CLS63/rear.png`",
+      "`${BASE_URL}cars/Mercedes-CLS63/interior.png`",
     ],
   },
   {
@@ -64,10 +65,10 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "ISLE OF MAN GREEN",
     images: [
-      "/cars/BMW-M4/front.png",
-      "/cars/BMW-M4/side.png",
-      "/cars/BMW-M4/rear.png",
-      "/cars/BMW-M4/interior.png",
+      "`${BASE_URL}cars/BMW-M4/front.png`",
+      "`${BASE_URL}cars/BMW-M4/side.png`",
+      "`${BASE_URL}cars/BMW-M4/rear.png`",
+      "`${BASE_URL}cars/BMW-M4/interior.png`",
     ],
   },
   {
@@ -81,10 +82,10 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "PATAGONIA RED",
     images: [
-      "/cars/Mercedes-AMG-GT/front.png",
-      "/cars/Mercedes-AMG-GT/side.png",
-      "/cars/Mercedes-AMG-GT/rear.png",
-      "/cars/Mercedes-AMG-GT/interior.png",
+      "`${BASE_URL}cars/Mercedes-AMG-GT/front.png`",
+      "`${BASE_URL}cars/Mercedes-AMG-GT/side.png`",
+      "`${BASE_URL}cars/Mercedes-AMG-GT/rear.png`",
+      "`${BASE_URL}cars/Mercedes-AMG-GT/interior.png`",
     ],
   },
   {
@@ -98,10 +99,10 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "GT SILVER",
     images: [
-      "/cars/Porsche-911/front.png",
-      "/cars/Porsche-911/side.png",
-      "/cars/Porsche-911/rear.png",
-      "/cars/Porsche-911/interior.png",
+      "`${BASE_URL}cars/Porsche-911/front.png`",
+      "`${BASE_URL}cars/Porsche-911/side.png`",
+      "`${BASE_URL}cars/Porsche-911/rear.png`",
+      "`${BASE_URL}cars/Porsche-911/interior.png`",
     ],
   },
   {
@@ -115,10 +116,10 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "GIALLO INTI",
     images: [
-      "/cars/Lamborghini-Huracan-EVO/front.png",
-      "/cars/Lamborghini-Huracan-EVO/side.png",
-      "/cars/Lamborghini-Huracan-EVO/rear.png",
-      "/cars/Lamborghini-Huracan-EVO/interior.png",
+      "`${BASE_URL}cars/Lamborghini-Huracan-EVO/front.png`",
+      "`${BASE_URL}cars/Lamborghini-Huracan-EVO/side.png`",
+      "`${BASE_URL}cars/Lamborghini-Huracan-EVO/rear.png`",
+      "`${BASE_URL}cars/Lamborghini-Huracan-EVO/interior.png`",
     ],
   },
   {
@@ -132,10 +133,10 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "OBSIDIAN BLACK",
     images: [
-      "/cars/Mercedes-AMG-G63/front.png",
-      "/cars/Mercedes-AMG-G63/side.png",
-      "/cars/Mercedes-AMG-G63/rear.png",
-      "/cars/Mercedes-AMG-G63/interior.png",
+      "`${BASE_URL}cars/Mercedes-AMG-G63/front.png`",
+      "`${BASE_URL}cars/Mercedes-AMG-G63/side.png`",
+      "`${BASE_URL}cars/Mercedes-AMG-G63/rear.png`",
+      "`${BASE_URL}cars/Mercedes-AMG-G63/interior.png`",
     ],
   },
   {
@@ -149,10 +150,10 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "PEARL WHITE",
     images: [
-      "/cars/Range-Rover-Sport-SV/front.png",
-      "/cars/Range-Rover-Sport-SV/side.png",
-      "/cars/Range-Rover-Sport-SV/rear.png",
-      "/cars/Range-Rover-Sport-SV/interior.png",
+      "`${BASE_URL}cars/Range-Rover-Sport-SV/front.png`",
+      "`${BASE_URL}cars/Range-Rover-Sport-SV/side.png`",
+      "`${BASE_URL}cars/Range-Rover-Sport-SV/rear.png`",
+      "`${BASE_URL}cars/Range-Rover-Sport-SV/interior.png`",
     ],
   },
 ];

@@ -241,7 +241,7 @@ function Booking() {
       >
         <div className="booking-car-image">
           <img
-            src="/cars/car-headlight.png"
+            src="`${import.meta.env.BASE_URL}images/car-headlight.png`"
             alt="Velocity car headlights"
           />
         </div>
