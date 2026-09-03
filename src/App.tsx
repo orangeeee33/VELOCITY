@@ -679,7 +679,9 @@ function App() {
             if (
               lockedRef.current &&
               modeRef.current ===
-                "idle"
+                "idle" &&
+                stageRef.current !==
+                "finished"
             ) {
               playForward();
             }
@@ -690,18 +692,12 @@ function App() {
             className="car-video"
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             onLoadedData={() => {
               const video =
                 videoRef.current;
 
               if (!video) return;
-
-              /*
-                مهم للموبايل:
-                لا نوقف الفيديو إذا كان
-                بدأ التشغيل بالفعل.
-              */
               if (
                 modeRef.current ===
                 "idle"
