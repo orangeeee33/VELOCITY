@@ -1,8 +1,3 @@
-import "./App.css";
-import "./styles/booking.css";
-import OurCars from "./components/OurCars";
-import Booking from "./components/Booking";
-import HowItWorks from "./components/HowItWorks";
 import {
   useEffect,
   useRef,
@@ -10,6 +5,11 @@ import {
 } from "react";
 
 import "./App.css";
+import "./styles/booking.css";
+
+import OurCars from "./components/OurCars";
+import Booking from "./components/Booking";
+import HowItWorks from "./components/HowItWorks";
 
 type Stage =
   | "opening"
@@ -141,13 +141,17 @@ function App() {
     }
 
     modeRef.current = "forward";
-    changeStage("cinematic");
-
     video.playbackRate = 1;
 
-    video.play().catch(() => {
-      modeRef.current = "idle";
-    });
+    video
+      .play()
+      .then(() => {
+        changeStage("cinematic");
+      })
+      .catch(() => {
+        modeRef.current = "idle";
+        changeStage("opening");
+      });
   };
 
   const playReverse = () => {
@@ -162,7 +166,6 @@ function App() {
     }
 
     video.pause();
-
     modeRef.current = "reverse";
 
     let previousTime =
@@ -195,6 +198,7 @@ function App() {
           START_TIME;
 
         modeRef.current = "idle";
+
         reverseFrameRef.current =
           null;
 
@@ -254,7 +258,6 @@ function App() {
   ) => {
     setMenuOpened(false);
 
-
     if (
       !collectionOpenedRef.current
     ) {
@@ -313,7 +316,6 @@ function App() {
       "auto";
 
     window.scrollTo(0, 0);
-
     lockPage();
 
     requestAnimationFrame(() => {
@@ -326,8 +328,6 @@ function App() {
     const handleWheel = (
       event: WheelEvent
     ) => {
-    
-
       if (
         !lockedRef.current &&
         window.scrollY <= 2 &&
@@ -353,15 +353,12 @@ function App() {
 
       event.preventDefault();
 
-    
-
       if (
         event.deltaY > 0 &&
         modeRef.current === "idle"
       ) {
         playForward();
       }
-
 
       if (
         event.deltaY < 0 &&
@@ -407,8 +404,6 @@ function App() {
         return;
       }
 
-   
-
       if (
         lockedRef.current &&
         distance < -35 &&
@@ -438,9 +433,7 @@ function App() {
     const handleKeyDown = (
       event: KeyboardEvent
     ) => {
-      if (
-        event.key === "Escape"
-      ) {
+      if (event.key === "Escape") {
         setMenuOpened(false);
       }
 
@@ -449,24 +442,19 @@ function App() {
       }
 
       if (
-        event.key ===
-          "ArrowDown" ||
-        event.key ===
-          "PageDown" ||
+        event.key === "ArrowDown" ||
+        event.key === "PageDown" ||
         event.key === " "
       ) {
         event.preventDefault();
-
         playForward();
       }
 
       if (
-        event.key ===
-          "ArrowUp" ||
+        event.key === "ArrowUp" ||
         event.key === "PageUp"
       ) {
         event.preventDefault();
-
         playReverse();
       }
     };
@@ -613,7 +601,11 @@ function App() {
               ? "menu-opened"
               : ""
           }`}
-          aria-label="Open menu"
+          aria-label={
+            menuOpened
+              ? "Close menu"
+              : "Open menu"
+          }
           onClick={() =>
             setMenuOpened(
               (current) => !current
@@ -674,10 +666,6 @@ function App() {
           >
             BOOK A CAR
           </button>
-
-          {!collectionOpened 
-            
-          }
         </div>
       )}
 
@@ -685,7 +673,18 @@ function App() {
         id="hero"
         className="hero-scroll"
       >
-        <div className="video-stage">
+        <div
+          className="video-stage"
+          onClick={() => {
+            if (
+              lockedRef.current &&
+              modeRef.current ===
+                "idle"
+            ) {
+              playForward();
+            }
+          }}
+        >
           <video
             ref={videoRef}
             className="car-video"
@@ -698,14 +697,29 @@ function App() {
 
               if (!video) return;
 
-              video.pause();
-              video.currentTime =
-                START_TIME;
+              /*
+                مهم للموبايل:
+                لا نوقف الفيديو إذا كان
+                بدأ التشغيل بالفعل.
+              */
+              if (
+                modeRef.current ===
+                "idle"
+              ) {
+                video.pause();
 
-              modeRef.current =
-                "idle";
+                if (
+                  video.currentTime <
+                  START_TIME
+                ) {
+                  video.currentTime =
+                    START_TIME;
+                }
 
-              changeStage("opening");
+                changeStage(
+                  "opening"
+                );
+              }
             }}
             onTimeUpdate={() => {
               const video =
@@ -733,8 +747,6 @@ function App() {
 
           <div className="video-overlay" />
 
-
-
           <div
             className={`intro-copy ${
               stage === "opening"
@@ -749,7 +761,6 @@ function App() {
             <h1>
               DRIVE YOUR
               <br />
-
               <span>MOMENT.</span>
             </h1>
 
@@ -758,8 +769,6 @@ function App() {
               Unforgettable journeys.
             </small>
           </div>
-
-          {/* لقطة السيارة الجانبية */}
 
           <div
             className={`checkpoint rental-checkpoint ${
@@ -782,7 +791,6 @@ function App() {
             </h2>
           </div>
 
-
           <div
             className={`checkpoint final-checkpoint ${
               stage === "finished"
@@ -798,7 +806,6 @@ function App() {
             <h2>
               READY TO
               <br />
-
               <span>DRIVE?</span>
             </h2>
 
@@ -807,7 +814,6 @@ function App() {
               onClick={openCollection}
             >
               EXPLORE OUR CARS
-
               <b>↗</b>
             </button>
           </div>
@@ -819,16 +825,14 @@ function App() {
                 : ""
             }`}
           >
-            
             <span />
           </div>
         </div>
       </section>
 
-      <OurCars/>
-      <HowItWorks/>
-
-     <Booking/>
+      <OurCars />
+      <HowItWorks />
+      <Booking />
 
       <footer id="contact">
         <span>VELOCITY</span>
@@ -843,9 +847,7 @@ function App() {
           </a>
         </div>
 
-        <p>
-          © 2026 VELOCITY
-        </p>
+        <p>© 2026 VELOCITY</p>
       </footer>
     </main>
   );
