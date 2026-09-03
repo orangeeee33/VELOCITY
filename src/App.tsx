@@ -688,60 +688,65 @@ function App() {
           }}
         >
           <video
-            ref={videoRef}
-            className="car-video"
-            muted
-            playsInline
-            preload="metadata"
-            poster={`${import.meta.env.BASE_URL}videos/session-poster.png`}
-            onLoadedData={() => {
-              const video =
-                videoRef.current;
+  ref={videoRef}
+  className="car-video"
+  muted
+  playsInline
+  preload="metadata"
+  onLoadedData={() => {
+    const video =
+      videoRef.current;
 
-              if (!video) return;
-              if (
-                modeRef.current ===
-                "idle"
-            
-              ) {
-                video.pause();
+    if (!video) return;
 
-                if (
-                  video.currentTime <
-                  START_TIME
-                ) {
-                  video.currentTime =
-                    START_TIME;
-                }
+    if (
+      modeRef.current === "idle"
+    ) {
+      video.pause();
 
-                changeStage(
-                  "opening"
-                );
-              }
-            }}
-            onTimeUpdate={() => {
-              const video =
-                videoRef.current;
+      if (
+        video.currentTime <
+        START_TIME
+      ) {
+        video.currentTime =
+          START_TIME;
+      }
 
-              if (!video) return;
+      changeStage("opening");
+    }
+  }}
+  onTimeUpdate={() => {
+    const video =
+      videoRef.current;
 
-              updateStage(
-                video.currentTime,
-                video.duration
-              );
-            }}
-            onEnded={() => {
-              modeRef.current =
-                "idle";
+    if (!video) return;
 
-              changeStage("finished");
-            }}
-          >
-            <source
-              src={`${import.meta.env.BASE_URL}videos/session.mp4`}
-              type="video/mp4"
-            />
-          </video>
+    updateStage(
+      video.currentTime,
+      video.duration
+    );
+  }}
+  onEnded={() => {
+    modeRef.current = "idle";
+    changeStage("finished");
+  }}
+>
+  <source
+    src={`${import.meta.env.BASE_URL}videos/session.mp4`}
+    type="video/mp4"
+  />
+</video>
+
+<img
+  className={`video-poster ${
+    stage === "opening"
+      ? "video-poster-visible"
+      : ""
+  }`}
+  src={`${import.meta.env.BASE_URL}videos/session-poster.png`}
+  alt=""
+  aria-hidden="true"
+/>
 
           <div className="video-overlay" />
 
