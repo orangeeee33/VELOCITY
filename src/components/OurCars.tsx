@@ -327,7 +327,7 @@ const goToRequirements = () => {
               >
                 <div className="car-image-box">
                   <img
-                    src={car.images[0]}
+                    src={getCarImage(car.images[0])}
                     alt={car.name}
                   />
 
