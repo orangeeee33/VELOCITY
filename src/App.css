@@ -968,7 +968,9 @@ footer p {
     top: 65px;
   }
   .car-video {
-    object-position: center;
+    object-position: center center;
+    object-fit: contain;
+    background: #000;
   }
   .video-overlay {
     background:

@@ -692,7 +692,7 @@ function App() {
             className="car-video"
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             onLoadedData={() => {
               const video =
                 videoRef.current;
