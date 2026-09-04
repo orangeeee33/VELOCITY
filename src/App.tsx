@@ -817,13 +817,8 @@ function App() {
               ) {
                 video.pause();
 
-                if (
-                  video.currentTime <
-                  START_TIME
-                ) {
-                  video.currentTime =
-                    START_TIME;
-                }
+                video.currentTime =
+                  START_TIME;
 
                 changeStage(
                   "opening"
@@ -870,7 +865,7 @@ function App() {
               src={`${
                 import.meta.env
                   .BASE_URL
-              }videos/session.mp4`}
+              }videos/session.mp4#t=0.2`}
               type="video/mp4"
             />
           </video>
@@ -891,6 +886,7 @@ function App() {
             <h1>
               DRIVE YOUR
               <br />
+
               <span>
                 MOMENT.
               </span>
