@@ -87,7 +87,13 @@ button {
 }
 .logo {
   padding: 0;
-  color: inherit;
+  color: #20cfc6;
+  display: inline-block;
+  animation:
+    colorWave
+    2s
+    ease-in-out
+    infinite;
   background: transparent;
   font-size: 16px;
   font-weight: 800;
@@ -96,6 +102,14 @@ button {
   transition:
     color 0.3s ease,
     text-shadow 0.3s ease;
+}
+@keyframes wave{
+  0% , 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
 }
 .logo:hover {
   color: var(--turquoise);
