@@ -1,4 +1,3 @@
-
 import {
   useEffect,
   useState,
@@ -18,16 +17,20 @@ type Car = {
   color: string;
   images: string[];
 };
-const getCarImage = (path: string) =>
-  `${import.meta.env.BASE_URL}${path.replace(
-    /^\//,
-    ""
-  )}`;
+
+const getCarImage = (
+  path: string
+) =>
+  `${
+    import.meta.env.BASE_URL
+  }${path.replace(/^\//, "")}`;
+
 const cars: Car[] = [
   {
     id: 1,
     name: "BMW M5",
-    category: "PERFORMANCE SEDAN",
+    category:
+      "PERFORMANCE SEDAN",
     price: 450,
     engine: "4.4L V8",
     power: "617 HP",
@@ -35,10 +38,18 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "GRAPHITE GREY",
     images: [
-      getCarImage("/cars/BMW-M5/front.png"),
-      getCarImage("/cars/BMW-M5/side.png"),
-      getCarImage("/cars/BMW-M5/rear.png"),
-      getCarImage("/cars/BMW-M5/interior.png"),
+      getCarImage(
+        "/cars/BMW-M5/front.png"
+      ),
+      getCarImage(
+        "/cars/BMW-M5/side.png"
+      ),
+      getCarImage(
+        "/cars/BMW-M5/rear.png"
+      ),
+      getCarImage(
+        "/cars/BMW-M5/interior.png"
+      ),
     ],
   },
   {
@@ -52,10 +63,18 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "OBSIDIAN GREY",
     images: [
-      getCarImage("/cars/Mercedes-CLS63/front.png"),
-      getCarImage("/cars/Mercedes-CLS63/side.png"),
-      getCarImage("/cars/Mercedes-CLS63/rear.png"),
-      getCarImage("/cars/Mercedes-CLS63/interior.png"),
+      getCarImage(
+        "/cars/Mercedes-CLS63/front.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-CLS63/side.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-CLS63/rear.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-CLS63/interior.png"
+      ),
     ],
   },
   {
@@ -67,12 +86,21 @@ const cars: Car[] = [
     power: "503 HP",
     seats: 4,
     transmission: "AUTOMATIC",
-    color: "ISLE OF MAN GREEN",
+    color:
+      "ISLE OF MAN GREEN",
     images: [
-      getCarImage("/cars/BMW-M4/front.png"),
-      getCarImage("/cars/BMW-M4/side.png"),
-      getCarImage("/cars/BMW-M4/rear.png"),
-      getCarImage("/cars/BMW-M4/interior.png"),
+      getCarImage(
+        "/cars/BMW-M4/front.png"
+      ),
+      getCarImage(
+        "/cars/BMW-M4/side.png"
+      ),
+      getCarImage(
+        "/cars/BMW-M4/rear.png"
+      ),
+      getCarImage(
+        "/cars/BMW-M4/interior.png"
+      ),
     ],
   },
   {
@@ -86,10 +114,18 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "PATAGONIA RED",
     images: [
-      getCarImage("/cars/Mercedes-AMG-GT/front.png"),
-      getCarImage("/cars/Mercedes-AMG-GT/side.png"),
-      getCarImage("/cars/Mercedes-AMG-GT/rear.png"),
-      getCarImage("/cars/Mercedes-AMG-GT/interior.png"),
+      getCarImage(
+        "/cars/Mercedes-AMG-GT/front.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-AMG-GT/side.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-AMG-GT/rear.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-AMG-GT/interior.png"
+      ),
     ],
   },
   {
@@ -103,15 +139,24 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "GT SILVER",
     images: [
-      getCarImage("/cars/Porsche-911/front.png"),
-      getCarImage("/cars/Porsche-911/side.png"),
-      getCarImage("/cars/Porsche-911/rear.png"),
-      getCarImage("/cars/Porsche-911/interior.png"),
+      getCarImage(
+        "/cars/Porsche-911/front.png"
+      ),
+      getCarImage(
+        "/cars/Porsche-911/side.png"
+      ),
+      getCarImage(
+        "/cars/Porsche-911/rear.png"
+      ),
+      getCarImage(
+        "/cars/Porsche-911/interior.png"
+      ),
     ],
   },
   {
     id: 6,
-    name: "LAMBORGHINI HURACÁN",
+    name:
+      "LAMBORGHINI HURACÁN",
     category: "SUPERCAR",
     price: 1200,
     engine: "5.2L V10",
@@ -120,10 +165,18 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "GIALLO INTI",
     images: [
-      getCarImage("/cars/Lamborghini-Huracan-EVO/front.png"),
-      getCarImage("/cars/Lamborghini-Huracan-EVO/side.png"),
-      getCarImage("/cars/Lamborghini-Huracan-EVO/rear.png"),
-      getCarImage("/cars/Lamborghini-Huracan-EVO/interior.png"),
+      getCarImage(
+        "/cars/Lamborghini-Huracan-EVO/front.png"
+      ),
+      getCarImage(
+        "/cars/Lamborghini-Huracan-EVO/side.png"
+      ),
+      getCarImage(
+        "/cars/Lamborghini-Huracan-EVO/rear.png"
+      ),
+      getCarImage(
+        "/cars/Lamborghini-Huracan-EVO/interior.png"
+      ),
     ],
   },
   {
@@ -137,16 +190,26 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "OBSIDIAN BLACK",
     images: [
-      getCarImage("/cars/Mercedes-AMG-G63/front.png"),
-      getCarImage("/cars/Mercedes-AMG-G63/side.png"),
-      getCarImage("/cars/Mercedes-AMG-G63/rear.png"),
-      getCarImage("/cars/Mercedes-AMG-G63/interior.png"),
+      getCarImage(
+        "/cars/Mercedes-AMG-G63/front.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-AMG-G63/side.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-AMG-G63/rear.png"
+      ),
+      getCarImage(
+        "/cars/Mercedes-AMG-G63/interior.png"
+      ),
     ],
   },
   {
     id: 8,
-    name: "RANGE ROVER SPORT SV",
-    category: "PERFORMANCE SUV",
+    name:
+      "RANGE ROVER SPORT SV",
+    category:
+      "PERFORMANCE SUV",
     price: 650,
     engine: "4.4L V8",
     power: "626 HP",
@@ -154,10 +217,18 @@ const cars: Car[] = [
     transmission: "AUTOMATIC",
     color: "PEARL WHITE",
     images: [
-      getCarImage("/cars/Range-Rover-Sport-SV/front.png"),
-      getCarImage("/cars/Range-Rover-Sport-SV/side.png"),
-      getCarImage("/cars/Range-Rover-Sport-SV/rear.png"),
-      getCarImage("/cars/Range-Rover-Sport-SV/interior.png"),
+      getCarImage(
+        "/cars/Range-Rover-Sport-SV/front.png"
+      ),
+      getCarImage(
+        "/cars/Range-Rover-Sport-SV/side.png"
+      ),
+      getCarImage(
+        "/cars/Range-Rover-Sport-SV/rear.png"
+      ),
+      getCarImage(
+        "/cars/Range-Rover-Sport-SV/interior.png"
+      ),
     ],
   },
 ];
@@ -166,14 +237,18 @@ function OurCars() {
   const [
     selectedCar,
     setSelectedCar,
-  ] = useState<Car | null>(null);
+  ] = useState<Car | null>(
+    null
+  );
 
   const [
     selectedImage,
     setSelectedImage,
   ] = useState(0);
 
-  const openCar = (car: Car) => {
+  const openCar = (
+    car: Car
+  ) => {
     setSelectedCar(car);
     setSelectedImage(0);
   };
@@ -190,45 +265,52 @@ function OurCars() {
 
     setSelectedImage(
       (current) =>
-        (
-          current +
+        (current +
           direction +
-          selectedCar.images.length
-        ) % selectedCar.images.length
+          selectedCar.images
+            .length) %
+        selectedCar.images.length
     );
   };
-const goToRequirements = () => {
-  if (!selectedCar) return;
 
-  window.dispatchEvent(
-    new CustomEvent(
-      "velocity-select-car",
-      {
-        detail:
-          selectedCar.name,
-      }
-    )
-  );
+  const goToRequirements =
+    () => {
+      if (!selectedCar) return;
 
-  closeCar();
+      window.dispatchEvent(
+        new CustomEvent(
+          "velocity-select-car",
+          {
+            detail:
+              selectedCar.name,
+          }
+        )
+      );
 
-  window.setTimeout(() => {
-    document
-      .getElementById(
-        "requirements"
-      )
-      ?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-  }, 100);
-};
+      closeCar();
+
+      window.setTimeout(
+        () => {
+          document
+            .getElementById(
+              "requirements"
+            )
+            ?.scrollIntoView({
+              behavior:
+                "smooth",
+              block: "start",
+            });
+        },
+        100
+      );
+    };
 
   useEffect(() => {
     if (!selectedCar) return;
 
     const previousOverflow =
-      document.body.style.overflow;
+      document.body.style
+        .overflow;
 
     document.body.style.overflow =
       "hidden";
@@ -236,36 +318,40 @@ const goToRequirements = () => {
     const handleKeyDown = (
       event: KeyboardEvent
     ) => {
-      if (event.key === "Escape") {
+      if (
+        event.key === "Escape"
+      ) {
         setSelectedCar(null);
         setSelectedImage(0);
       }
 
       if (
-        event.key === "ArrowRight"
+        event.key ===
+        "ArrowRight"
       ) {
         setSelectedImage(
           (current) =>
-            (
-              current +
+            (current +
               1 +
-              selectedCar.images.length
-            ) %
-            selectedCar.images.length
+              selectedCar
+                .images.length) %
+            selectedCar.images
+              .length
         );
       }
 
       if (
-        event.key === "ArrowLeft"
+        event.key ===
+        "ArrowLeft"
       ) {
         setSelectedImage(
           (current) =>
-            (
-              current -
+            (current -
               1 +
-              selectedCar.images.length
-            ) %
-            selectedCar.images.length
+              selectedCar
+                .images.length) %
+            selectedCar.images
+              .length
         );
       }
     };
@@ -327,7 +413,9 @@ const goToRequirements = () => {
               >
                 <div className="car-image-box">
                   <img
-                    src={getCarImage(car.images[0])}
+                    src={
+                      car.images[0]
+                    }
                     alt={car.name}
                   />
 
@@ -342,7 +430,7 @@ const goToRequirements = () => {
 
                   <span className="view-car">
                     VIEW CAR
-                    <b>↗</b>
+                    <b>↗️</b>
                   </span>
                 </div>
 
@@ -378,7 +466,9 @@ const goToRequirements = () => {
       {selectedCar && (
         <div
           className="car-modal-overlay"
-          onMouseDown={(event) => {
+          onMouseDown={(
+            event
+          ) => {
             if (
               event.target ===
               event.currentTarget
@@ -401,12 +491,16 @@ const goToRequirements = () => {
             <div className="modal-gallery">
               <img
                 src={
-                  selectedCar.images[
+                  selectedCar
+                    .images[
                     selectedImage
                   ]
                 }
-                alt={`${selectedCar.name} ${
-                  selectedImage + 1
+                alt={`${
+                  selectedCar.name
+                } ${
+                  selectedImage +
+                  1
                 }`}
               />
 
@@ -429,15 +523,22 @@ const goToRequirements = () => {
 
                 <span>
                   {String(
-                    selectedImage + 1
-                  ).padStart(2, "0")}
+                    selectedImage +
+                      1
+                  ).padStart(
+                    2,
+                    "0"
+                  )}
 
                   <i>/</i>
 
                   {String(
-                    selectedCar.images
-                      .length
-                  ).padStart(2, "0")}
+                    selectedCar
+                      .images.length
+                  ).padStart(
+                    2,
+                    "0"
+                  )}
                 </span>
 
                 <button
@@ -454,7 +555,10 @@ const goToRequirements = () => {
 
             <div className="modal-thumbnails">
               {selectedCar.images.map(
-                (image, index) => (
+                (
+                  image,
+                  index
+                ) => (
                   <button
                     type="button"
                     key={image}
@@ -487,7 +591,9 @@ const goToRequirements = () => {
                   </p>
 
                   <h3>
-                    {selectedCar.name}
+                    {
+                      selectedCar.name
+                    }
                   </h3>
                 </div>
 
@@ -507,7 +613,9 @@ const goToRequirements = () => {
 
               <div className="modal-specifications">
                 <div>
-                  <span>ENGINE</span>
+                  <span>
+                    ENGINE
+                  </span>
 
                   <strong>
                     {
@@ -517,7 +625,9 @@ const goToRequirements = () => {
                 </div>
 
                 <div>
-                  <span>POWER</span>
+                  <span>
+                    POWER
+                  </span>
 
                   <strong>
                     {
@@ -527,7 +637,9 @@ const goToRequirements = () => {
                 </div>
 
                 <div>
-                  <span>SEATS</span>
+                  <span>
+                    SEATS
+                  </span>
 
                   <strong>
                     {
@@ -549,7 +661,9 @@ const goToRequirements = () => {
                 </div>
 
                 <div>
-                  <span>COLOR</span>
+                  <span>
+                    COLOR
+                  </span>
 
                   <strong>
                     {
@@ -562,13 +676,15 @@ const goToRequirements = () => {
               <button
                 type="button"
                 className="modal-book-button"
-                onClick={goToRequirements}
+                onClick={
+                  goToRequirements
+                }
               >
                 <span>
-                 WHAT YOU NEED
+                  WHAT YOU NEED
                 </span>
 
-                <b>↗</b>
+                <b>↗️</b>
               </button>
             </div>
           </article>

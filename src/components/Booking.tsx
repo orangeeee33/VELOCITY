@@ -240,12 +240,11 @@ function Booking() {
         onSubmit={submitBooking}
       >
         <div className="booking-car-image">
-          <img
-            src="`${import.meta.env.BASE_URL}images/car-headlight.png`"
-            alt="Velocity car headlights"
-          />
-        </div>
-
+  <img
+    src={`${import.meta.env.BASE_URL}cars/car-headlight.png`}
+    alt="Velocity car headlights"
+  />
+</div>
         <div className="booking-card-heading">
           <div>
             <p>

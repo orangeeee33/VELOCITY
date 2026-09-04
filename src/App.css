@@ -343,34 +343,6 @@ button {
   object-fit: cover;
   object-position: center;
 }
-.video-poster {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  width: 100%;
-  height: 100%;
-
-  display: block;
-
-  object-fit: cover;
-  object-position: center center;
-
-  opacity: 0;
-  visibility: hidden;
-
-  background: #000;
-  pointer-events: none;
-
-  transition:
-    opacity 0.25s ease,
-    visibility 0.25s ease;
-}
-
-.video-poster-visible {
-  opacity: 1;
-  visibility: visible;
-}
 .video-overlay {
   position: absolute;
   inset: 0;
@@ -394,7 +366,7 @@ button {
 .intro-copy {
   position: absolute;
   left: 7%;
-  bottom: 9%;
+  bottom: 18%;
   z-index: 10;
   max-width: 850px;
   opacity: 0;
@@ -995,11 +967,10 @@ footer p {
   .navigation-menu {
     top: 65px;
   }
-  .car-video
-  .video-poster {
+  .car-video {
     object-position: center center;
     object-fit: contain;
-    background: #000;
+    background: black;
   }
   .video-overlay {
     background:
@@ -1011,14 +982,15 @@ footer p {
   }
   .intro-copy {
     right: 20px;
-    bottom: 115px;
+    bottom: 200px;
     left: 20px;
     max-width: none;
+    text-align: left;
   }
   .intro-copy p,
   .checkpoint p {
     margin-bottom: 11px;
-    font-size: 8px;
+    font-size: 20px;
     letter-spacing: 3px;
   }
   .intro-copy h1,
@@ -1035,7 +1007,7 @@ footer p {
   }
   .rental-checkpoint {
     right: 20px;
-    bottom: 70px;
+    bottom: 180px;
     left: 20px;
     max-width: none;
     text-align: left;

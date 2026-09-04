@@ -26,10 +26,14 @@ const START_TIME = 0.2;
 
 function App() {
   const videoRef =
-    useRef<HTMLVideoElement>(null);
+    useRef<HTMLVideoElement>(
+      null
+    );
 
   const reverseFrameRef =
-    useRef<number | null>(null);
+    useRef<number | null>(
+      null
+    );
 
   const modeRef =
     useRef<VideoMode>("idle");
@@ -45,6 +49,11 @@ function App() {
 
   const touchStartYRef =
     useRef(0);
+
+  const pendingSectionRef =
+    useRef<string | null>(
+      null
+    );
 
   const [stage, setStage] =
     useState<Stage>("opening");
@@ -62,7 +71,9 @@ function App() {
   const changeStage = (
     nextStage: Stage
   ) => {
-    stageRef.current = nextStage;
+    stageRef.current =
+      nextStage;
+
     setStage(nextStage);
   };
 
@@ -102,7 +113,9 @@ function App() {
 
     if (progress >= 0.985) {
       changeStage("finished");
-    } else if (progress >= 0.58) {
+    } else if (
+      progress >= 0.58
+    ) {
       changeStage("rental");
     } else if (
       currentTime >
@@ -115,58 +128,74 @@ function App() {
   };
 
   const playForward = () => {
-    const video = videoRef.current;
+    const video =
+      videoRef.current;
 
     if (
       !video ||
-      modeRef.current !== "idle"
+      modeRef.current !==
+        "idle"
     ) {
       return;
     }
 
     if (
-      stageRef.current === "finished"
+      stageRef.current ===
+      "finished"
     ) {
       return;
     }
 
     if (
-      reverseFrameRef.current !== null
+      reverseFrameRef.current !==
+      null
     ) {
       cancelAnimationFrame(
         reverseFrameRef.current
       );
 
-      reverseFrameRef.current = null;
+      reverseFrameRef.current =
+        null;
     }
 
-    modeRef.current = "forward";
+    modeRef.current =
+      "forward";
+
     video.playbackRate = 1;
 
     video
       .play()
       .then(() => {
-        changeStage("cinematic");
+        changeStage(
+          "cinematic"
+        );
       })
       .catch(() => {
-        modeRef.current = "idle";
+        modeRef.current =
+          "idle";
+
         changeStage("opening");
       });
   };
 
   const playReverse = () => {
-    const video = videoRef.current;
+    const video =
+      videoRef.current;
 
     if (
       !video ||
-      modeRef.current !== "idle" ||
-      video.currentTime <= START_TIME
+      modeRef.current !==
+        "idle" ||
+      video.currentTime <=
+        START_TIME
     ) {
       return;
     }
 
     video.pause();
-    modeRef.current = "reverse";
+
+    modeRef.current =
+      "reverse";
 
     let previousTime =
       performance.now();
@@ -177,7 +206,9 @@ function App() {
       const currentVideo =
         videoRef.current;
 
-      if (!currentVideo) return;
+      if (!currentVideo) {
+        return;
+      }
 
       const elapsed =
         (animationTime -
@@ -192,12 +223,14 @@ function App() {
         elapsed;
 
       if (
-        nextTime <= START_TIME
+        nextTime <=
+        START_TIME
       ) {
         currentVideo.currentTime =
           START_TIME;
 
-        modeRef.current = "idle";
+        modeRef.current =
+          "idle";
 
         reverseFrameRef.current =
           null;
@@ -227,14 +260,9 @@ function App() {
       );
   };
 
-  const openCollection = () => {
-    if (
-      stageRef.current !==
-      "finished"
-    ) {
-      return;
-    }
-
+  const openSection = (
+    sectionId: string
+  ) => {
     collectionOpenedRef.current =
       true;
 
@@ -243,14 +271,30 @@ function App() {
 
     unlockPage();
 
-    requestAnimationFrame(() => {
+    window.setTimeout(() => {
       document
-        .getElementById("cars")
+        .getElementById(
+          sectionId
+        )
         ?.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
-    });
+    }, 100);
+  };
+
+  const openCollection = () => {
+    if (
+      stageRef.current !==
+      "finished"
+    ) {
+      return;
+    }
+
+    pendingSectionRef.current =
+      null;
+
+    openSection("cars");
   };
 
   const navigateTo = (
@@ -262,17 +306,26 @@ function App() {
       !collectionOpenedRef.current
     ) {
       if (
-        stageRef.current !==
+        stageRef.current ===
         "finished"
       ) {
-        playForward();
+        openSection(sectionId);
+
+        return;
       }
+
+      pendingSectionRef.current =
+        sectionId;
+
+      playForward();
 
       return;
     }
 
     document
-      .getElementById(sectionId)
+      .getElementById(
+        sectionId
+      )
       ?.scrollIntoView({
         behavior: "smooth",
         block: "start",
@@ -281,6 +334,9 @@ function App() {
 
   const returnToVideo = () => {
     setMenuOpened(false);
+
+    pendingSectionRef.current =
+      null;
 
     if (
       !collectionOpenedRef.current
@@ -316,14 +372,17 @@ function App() {
       "auto";
 
     window.scrollTo(0, 0);
+
     lockPage();
 
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
+    requestAnimationFrame(
+      () => {
+        window.scrollTo(0, 0);
 
-      document.documentElement.style.scrollBehavior =
-        "smooth";
-    });
+        document.documentElement.style.scrollBehavior =
+          "smooth";
+      }
+    );
 
     const handleWheel = (
       event: WheelEvent
@@ -338,7 +397,13 @@ function App() {
         collectionOpenedRef.current =
           false;
 
-        setCollectionOpened(false);
+        pendingSectionRef.current =
+          null;
+
+        setCollectionOpened(
+          false
+        );
+
         setMenuOpened(false);
 
         lockPage();
@@ -347,7 +412,9 @@ function App() {
         return;
       }
 
-      if (!lockedRef.current) {
+      if (
+        !lockedRef.current
+      ) {
         return;
       }
 
@@ -355,15 +422,20 @@ function App() {
 
       if (
         event.deltaY > 0 &&
-        modeRef.current === "idle"
+        modeRef.current ===
+          "idle"
       ) {
         playForward();
       }
 
       if (
         event.deltaY < 0 &&
-        modeRef.current === "idle"
+        modeRef.current ===
+          "idle"
       ) {
+        pendingSectionRef.current =
+          null;
+
         playReverse();
       }
     };
@@ -372,7 +444,8 @@ function App() {
       event: TouchEvent
     ) => {
       touchStartYRef.current =
-        event.touches[0].clientY;
+        event.touches[0]
+          .clientY;
     };
 
     const handleTouchMove = (
@@ -397,7 +470,8 @@ function App() {
       if (
         lockedRef.current &&
         distance > 35 &&
-        modeRef.current === "idle"
+        modeRef.current ===
+          "idle"
       ) {
         playForward();
 
@@ -407,8 +481,12 @@ function App() {
       if (
         lockedRef.current &&
         distance < -35 &&
-        modeRef.current === "idle"
+        modeRef.current ===
+          "idle"
       ) {
+        pendingSectionRef.current =
+          null;
+
         playReverse();
 
         return;
@@ -422,7 +500,13 @@ function App() {
         collectionOpenedRef.current =
           false;
 
-        setCollectionOpened(false);
+        pendingSectionRef.current =
+          null;
+
+        setCollectionOpened(
+          false
+        );
+
         setMenuOpened(false);
 
         lockPage();
@@ -433,28 +517,41 @@ function App() {
     const handleKeyDown = (
       event: KeyboardEvent
     ) => {
-      if (event.key === "Escape") {
+      if (
+        event.key === "Escape"
+      ) {
         setMenuOpened(false);
       }
 
-      if (!lockedRef.current) {
+      if (
+        !lockedRef.current
+      ) {
         return;
       }
 
       if (
-        event.key === "ArrowDown" ||
-        event.key === "PageDown" ||
+        event.key ===
+          "ArrowDown" ||
+        event.key ===
+          "PageDown" ||
         event.key === " "
       ) {
         event.preventDefault();
+
         playForward();
       }
 
       if (
-        event.key === "ArrowUp" ||
-        event.key === "PageUp"
+        event.key ===
+          "ArrowUp" ||
+        event.key ===
+          "PageUp"
       ) {
         event.preventDefault();
+
+        pendingSectionRef.current =
+          null;
+
         playReverse();
       }
     };
@@ -546,7 +643,9 @@ function App() {
         <button
           type="button"
           className="logo"
-          onClick={returnToVideo}
+          onClick={
+            returnToVideo
+          }
         >
           VELOCITY
         </button>
@@ -556,7 +655,9 @@ function App() {
             <button
               type="button"
               onClick={() =>
-                navigateTo("cars")
+                navigateTo(
+                  "cars"
+                )
               }
             >
               OUR CARS
@@ -576,7 +677,9 @@ function App() {
             <button
               type="button"
               onClick={() =>
-                navigateTo("contact")
+                navigateTo(
+                  "contact"
+                )
               }
             >
               CONTACT
@@ -586,7 +689,9 @@ function App() {
               type="button"
               className="book-button"
               onClick={() =>
-                navigateTo("booking")
+                navigateTo(
+                  "booking"
+                )
               }
             >
               BOOK A CAR
@@ -608,7 +713,8 @@ function App() {
           }
           onClick={() =>
             setMenuOpened(
-              (current) => !current
+              (current) =>
+                !current
             )
           }
         >
@@ -650,7 +756,9 @@ function App() {
           <button
             type="button"
             onClick={() =>
-              navigateTo("contact")
+              navigateTo(
+                "contact"
+              )
             }
           >
             <span>03</span>
@@ -661,7 +769,9 @@ function App() {
             type="button"
             className="mobile-book-button"
             onClick={() =>
-              navigateTo("booking")
+              navigateTo(
+                "booking"
+              )
             }
           >
             BOOK A CAR
@@ -680,7 +790,7 @@ function App() {
               lockedRef.current &&
               modeRef.current ===
                 "idle" &&
-                stageRef.current !==
+              stageRef.current !==
                 "finished"
             ) {
               playForward();
@@ -688,65 +798,82 @@ function App() {
           }}
         >
           <video
-  ref={videoRef}
-  className="car-video"
-  muted
-  playsInline
-  preload="metadata"
-  onLoadedData={() => {
-    const video =
-      videoRef.current;
+            ref={videoRef}
+            className="car-video"
+            muted
+            playsInline
+            preload="auto"
+            onLoadedData={() => {
+              const video =
+                videoRef.current;
 
-    if (!video) return;
+              if (!video) {
+                return;
+              }
 
-    if (
-      modeRef.current === "idle"
-    ) {
-      video.pause();
+              if (
+                modeRef.current ===
+                "idle"
+              ) {
+                video.pause();
 
-      if (
-        video.currentTime <
-        START_TIME
-      ) {
-        video.currentTime =
-          START_TIME;
-      }
+                if (
+                  video.currentTime <
+                  START_TIME
+                ) {
+                  video.currentTime =
+                    START_TIME;
+                }
 
-      changeStage("opening");
-    }
-  }}
-  onTimeUpdate={() => {
-    const video =
-      videoRef.current;
+                changeStage(
+                  "opening"
+                );
+              }
+            }}
+            onTimeUpdate={() => {
+              const video =
+                videoRef.current;
 
-    if (!video) return;
+              if (!video) {
+                return;
+              }
 
-    updateStage(
-      video.currentTime,
-      video.duration
-    );
-  }}
-  onEnded={() => {
-    modeRef.current = "idle";
-    changeStage("finished");
-  }}
->
-  <source
-    src={`${import.meta.env.BASE_URL}videos/session.mp4`}
-    type="video/mp4"
-  />
-</video>
+              updateStage(
+                video.currentTime,
+                video.duration
+              );
+            }}
+            onEnded={() => {
+              modeRef.current =
+                "idle";
 
-<img
-  className={`video-poster ${
-    stage === "opening"
-      ? "video-poster-visible"
-      : ""
-  }`}
-  src={`${import.meta.env.BASE_URL}videos/session-poster.png`}
-  alt=""
-  aria-hidden="true"
-/>
+              changeStage(
+                "finished"
+              );
+
+              const requestedSection =
+                pendingSectionRef.current;
+
+              if (
+                requestedSection
+              ) {
+                pendingSectionRef.current =
+                  null;
+
+                openSection(
+                  requestedSection
+                );
+              }
+            }}
+          >
+            <source
+              src={`${
+                import.meta.env
+                  .BASE_URL
+              }videos/session.mp4`}
+              type="video/mp4"
+            />
+          </video>
 
           <div className="video-overlay" />
 
@@ -764,12 +891,15 @@ function App() {
             <h1>
               DRIVE YOUR
               <br />
-              <span>MOMENT.</span>
+              <span>
+                MOMENT.
+              </span>
             </h1>
 
             <small>
               Luxury cars.
-              Unforgettable journeys.
+              Unforgettable
+              journeys.
             </small>
           </div>
 
@@ -796,7 +926,8 @@ function App() {
 
           <div
             className={`checkpoint final-checkpoint ${
-              stage === "finished"
+              stage ===
+              "finished"
                 ? "show"
                 : ""
             }`}
@@ -809,15 +940,20 @@ function App() {
             <h2>
               READY TO
               <br />
-              <span>DRIVE?</span>
+
+              <span>
+                DRIVE?
+              </span>
             </h2>
 
             <button
               type="button"
-              onClick={openCollection}
+              onClick={
+                openCollection
+              }
             >
               EXPLORE OUR CARS
-              <b>↗</b>
+              <b>↗️</b>
             </button>
           </div>
 
@@ -834,7 +970,9 @@ function App() {
       </section>
 
       <OurCars />
+
       <HowItWorks />
+
       <Booking />
 
       <footer id="contact">
@@ -850,7 +988,9 @@ function App() {
           </a>
         </div>
 
-        <p>© 2026 VELOCITY</p>
+        <p>
+          ©️ 2026 VELOCITY
+        </p>
       </footer>
     </main>
   );
