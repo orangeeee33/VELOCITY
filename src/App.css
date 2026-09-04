@@ -71,11 +71,13 @@ button {
     color 0.4s ease,
     background 0.4s ease,
     box-shadow 0.4s ease;
+    background: transparent;
+    
 }
 .navbar-light {
-  color: var(--dark-text);
+  color: white;
   background:
-    rgba(239, 250, 248, 0.94);
+    rgba(1, 10,9, 0.72);
   box-shadow:
     0 1px 0
     rgba(6, 17, 15, 0.1);
@@ -189,9 +191,9 @@ button {
   border-color: var(--turquoise);
 }
 .navbar-light .menu-toggle {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.025);
   border-color:
-    rgba(6, 17, 15, 0.2);
+    rgba(255, 255, 255, 0.2);
 }
 .menu-toggle span {
   width: 18px;
@@ -225,7 +227,7 @@ button {
 ========================================== */
 .navigation-menu {
   position: fixed;
-  top: 65px;
+  top: 62px;
   right: 0;
   z-index: 99;
   width: min(360px, 100%);
@@ -255,9 +257,9 @@ button {
     rgba(32, 244, 223, 0.7);
 }
 .navigation-menu-light {
-  color: var(--dark-text);
+  color:white;
   background:
-    rgba(239, 250, 248, 0.98);
+    rgba(1, 8, 7, 0.98);
 }
 .navigation-menu > button {
   width: 100%;
