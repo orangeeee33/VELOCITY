@@ -85,42 +85,45 @@ button {
     blur(14px);
   backdrop-filter: blur(14px);
 }
+
+
 .logo {
   padding: 0;
-  color: #20cfc6;
   display: inline-block;
-  animation:
-    colorWave
-    2s
-    ease-in-out
-    infinite;
-  background: transparent;
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    #20f4df 0%,
+    #72fff1 35%,
+    #ffc078 70%,
+    #ff7838 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 16px;
   font-weight: 800;
   letter-spacing: 6px;
   cursor: pointer;
-  transition:
-    color 0.3s ease,
-    text-shadow 0.3s ease;
+  filter: drop-shadow(0 0 6px rgba(32, 244, 223, 0.5));
+  animation: logoGlow 1.8s ease-in-out infinite;
 }
-@keyframes wave{
-  0% , 100% {
-    transform: translateY(0);
+
+@keyframes logoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px #20f4df);
   }
   50% {
-    transform: translateY(5px);
+    filter: drop-shadow(0 0 9px #ff7838);
   }
 }
+
 .logo:hover {
-  color: var(--turquoise);
-  text-shadow:
-    0 0 15px
-    rgba(32, 244, 223, 0.5);
+  filter: drop-shadow(0 0 12px #20f4df)
+          drop-shadow(0 0 10px #ff7838);
 }
-.navbar-light .logo:hover {
-  color: var(--orange);
-  text-shadow: none;
-}
+
+/* حذف @keyframes logoLaserWave بالكامل */
 /* ==========================================
    DESKTOP NAVIGATION
 ========================================== */

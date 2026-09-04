@@ -650,7 +650,7 @@ function App() {
           VELOCITY
         </button>
 
-        {collectionOpened && (
+       
           <div className="desktop-navigation">
             <button
               type="button"
@@ -697,7 +697,7 @@ function App() {
               BOOK A CAR
             </button>
           </div>
-        )}
+        
 
         <button
           type="button"
